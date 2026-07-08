@@ -631,17 +631,17 @@ function About() {
             style={{ background: "var(--gradient-aurora)" }}
           />
           <div className="gradient-border relative h-full w-full overflow-hidden rounded-3xl">
-            <div className="grid h-full w-full place-items-center bg-gradient-to-br from-white/5 to-transparent">
-              <div className="text-center">
-                <div
-                  className="mx-auto grid h-32 w-32 place-items-center rounded-full text-5xl font-extrabold font-display text-white"
-                  style={{ background: "var(--gradient-primary)" }}
-                >
-                  VB
-                </div>
-                <p className="mt-6 font-display text-lg text-foreground">Vyshini B M</p>
-                <p className="text-sm text-muted-foreground">CSE · SVIT</p>
-              </div>
+            <img
+              src={profileAsset.url}
+              alt="Portrait of Vyshini B M"
+              loading="lazy"
+              className="h-full w-full object-cover"
+              style={{ objectPosition: "50% 25%" }}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
+              <p className="font-display text-lg font-bold text-foreground">Vyshini B M</p>
+              <p className="text-xs text-muted-foreground">CSE · SVIT</p>
             </div>
           </div>
         </motion.div>
