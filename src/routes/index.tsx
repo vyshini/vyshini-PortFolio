@@ -1056,7 +1056,42 @@ function CodingProfiles() {
 }
 
 function Contact() {
-  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (status === "sending") return;
+    setStatus("sending");
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name.trim(),
+          from_email: form.email.trim(),
+          reply_to: form.email.trim(),
+          subject: form.subject.trim() || "New portfolio contact",
+          message: form.message.trim(),
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      setStatus("sent");
+      setForm({ name: "", email: "", subject: "", message: "" });
+      setTimeout(() => setStatus("idle"), 3500);
+    } catch (err) {
+      console.error("EmailJS send failed", err);
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
+  };
+
+  const sending = status === "sending";
+
   return (
     <Section id="contact" title="Get in Touch" eyebrow="Contact">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.2fr]">
@@ -1095,20 +1130,17 @@ function Contact() {
           </div>
         </div>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSent(true);
-            setTimeout(() => setSent(false), 3000);
-          }}
-          className="glass-strong space-y-4 rounded-3xl p-8"
-        >
+        <form onSubmit={onSubmit} className="glass-strong space-y-4 rounded-3xl p-8">
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">Name</label>
               <input
                 required
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-cyan/60"
+                name="name"
+                value={form.name}
+                onChange={onChange}
+                disabled={sending}
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-cyan/60 disabled:opacity-60"
                 placeholder="Your name"
               />
             </div>
@@ -1117,7 +1149,11 @@ function Contact() {
               <input
                 required
                 type="email"
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-cyan/60"
+                name="email"
+                value={form.email}
+                onChange={onChange}
+                disabled={sending}
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-cyan/60 disabled:opacity-60"
                 placeholder="you@example.com"
               />
             </div>
@@ -1125,7 +1161,11 @@ function Contact() {
           <div>
             <label className="mb-1.5 block text-xs uppercase tracking-widest text-muted-foreground">Subject</label>
             <input
-              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-cyan/60"
+              name="subject"
+              value={form.subject}
+              onChange={onChange}
+              disabled={sending}
+              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-cyan/60 disabled:opacity-60"
               placeholder="Let's collaborate"
             />
           </div>
@@ -1134,16 +1174,21 @@ function Contact() {
             <textarea
               required
               rows={5}
-              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-cyan/60"
+              name="message"
+              value={form.message}
+              onChange={onChange}
+              disabled={sending}
+              className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-cyan/60 disabled:opacity-60"
               placeholder="Tell me about your project..."
             />
           </div>
           <button
             type="submit"
-            className="group inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02]"
+            disabled={sending}
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition-transform hover:scale-[1.02] disabled:opacity-70 disabled:hover:scale-100"
             style={{ background: "var(--gradient-primary)", boxShadow: "var(--shadow-glow)" }}
           >
-            {sent ? "Message Sent!" : (
+            {status === "sent" ? "Message Sent!" : status === "sending" ? "Sending..." : status === "error" ? "Failed — try again" : (
               <>
                 Send Message
                 <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
