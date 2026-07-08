@@ -1,3 +1,4 @@
+import profileAsset from "@/assets/vyshini-profile.jpeg.asset.json";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useSpring, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
