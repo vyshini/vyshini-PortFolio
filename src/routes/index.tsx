@@ -42,7 +42,7 @@ import {
   Trophy,
   Terminal,
   BrainCircuit,
-} from "lucide-react";
+  X,
 
 export const Route = createFileRoute("/")({
   component: Portfolio,
