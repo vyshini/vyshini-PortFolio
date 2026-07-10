@@ -1,6 +1,15 @@
 import profileAsset from "@/assets/vyshini-profile.jpeg.asset.json";
+import hackverseCert from "@/assets/certs/hackverse.jpg.asset.json";
+import cidecodeCert from "@/assets/certs/cidecode.jpeg.asset.json";
+import mongodbCert from "@/assets/certs/mongodb.jpg.asset.json";
+import ibmInternshipCert from "@/assets/certs/ibm-internship.jpg.asset.json";
+import googleCloudCert from "@/assets/certs/googlecloud.jpg.asset.json";
+import ibmAiCert from "@/assets/certs/ibm-ai.jpg.asset.json";
+import nptelCert from "@/assets/certs/nptel.jpg.asset.json";
+import genaiDalleCert from "@/assets/certs/genai-dalle.jpg.asset.json";
+import genaiPythonCert from "@/assets/certs/genai-python.jpg.asset.json";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useSpring, useInView } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 
