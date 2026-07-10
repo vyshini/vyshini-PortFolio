@@ -43,6 +43,8 @@ import {
   Terminal,
   BrainCircuit,
   X,
+} from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   component: Portfolio,
