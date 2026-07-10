@@ -1,23 +1,24 @@
-## Plan: EmailJS contact form integration
+## Plan: Add "View Certificate" for each certification & hackathon
 
-Wire the existing contact form on the homepage to EmailJS using the provided credentials so submissions send a real email.
+Recommendation: **upload all certificates for both sections** — recruiters value verifiable proof, and a "View Certificate" button per item keeps the layout clean (image only opens on click).
 
-### Steps
+### UI behavior
+- Under each certification card and each hackathon card, add a **"View Certificate"** button.
+- Clicking opens a lightbox/modal showing the certificate as a full image (zoomable, close on Esc / backdrop click).
+- If a specific entry has no certificate uploaded yet, hide the button for that entry only (no broken links).
 
-1. **Install package**: add `@emailjs/browser` via `bun add`.
-2. **Update `src/routes/index.tsx` → `Contact` component**:
-   - Add controlled state for `name`, `email`, `subject`, `message`.
-   - Add `status` state: `idle | sending | sent | error`.
-   - On submit, call `emailjs.send(SERVICE_ID, TEMPLATE_ID, params, { publicKey: PUBLIC_KEY })` with template params `{ from_name, from_email, subject, message, reply_to }`.
-   - On success: show "Message Sent!", reset fields, revert button after 3s.
-   - On error: show "Failed to send – try again" and log the error.
-   - Disable the submit button while sending; show a subtle sending state.
-   - Bind `name`, `value`, `onChange`, `disabled` on all inputs/textarea.
-3. **Credentials** (public/publishable — safe to inline in client code, per EmailJS design):
-   - `SERVICE_ID = "service_d2djhzx"`
-   - `TEMPLATE_ID = "template_v316htb"`
-   - `PUBLIC_KEY = "05PL7P5vyes76Aew"`
-4. **Validation**: keep native `required` + `type="email"`; trim values before sending.
-5. **Verify**: run a typecheck-friendly build path (no new server code) and confirm no console errors on the preview.
+### Upload approach
+- You upload the certificate images (JPG/PNG) via chat — one message per batch is fine.
+- For each image, please label it with the exact certification / hackathon name so I can wire it to the right card.
+- Images will be stored as Lovable CDN assets (keeps repo light, fast global delivery).
 
-No backend, no secrets tool, no other files touched. Note: your EmailJS template must reference variables `{{from_name}}`, `{{from_email}}`, `{{subject}}`, `{{message}}` for fields to populate.
+### Implementation steps (once you send the images)
+1. Upload each certificate to Lovable Assets → get `.asset.json` pointers.
+2. Extend the certifications & hackathons data in `src/routes/index.tsx` with an optional `certificateUrl` field per entry.
+3. Add a reusable `CertificateViewer` modal component (image + close button, backdrop blur).
+4. Add "View Certificate" button under each card, conditionally rendered.
+5. Verify visually in preview at mobile + desktop widths.
+
+### What I need from you next
+- Send the certificate images in chat.
+- For each image, tell me which certification or hackathon it belongs to (name as it appears on the site).
