@@ -184,21 +184,24 @@ const PROJECTS = [
   },
 ];
 
-const CERTIFICATIONS = [
-  { name: "Artificial Intelligence Fundamentals", org: "IBM SkillsBuild", date: "August 2025" },
-  { name: "Google Cloud Career Launchpad — Generative AI Leader", org: "Google Cloud", date: "2025" },
-  { name: "MongoDB Python Developer", org: "MongoDB", date: "February 2026" },
+const CERTIFICATIONS: { name: string; org: string; date: string; certificateUrl?: string }[] = [
+  { name: "Artificial Intelligence Fundamentals", org: "IBM SkillsBuild", date: "August 2025", certificateUrl: ibmAiCert.url },
+  { name: "IBM SkillsBuild Internship Offer — Gen AI & Cloud Computing", org: "IBM SkillsBuild · AICTE · BharatCares", date: "June 2026", certificateUrl: ibmInternshipCert.url },
+  { name: "Google Cloud Career Launchpad — Generative AI Leader", org: "Google Cloud", date: "2025", certificateUrl: googleCloudCert.url },
+  { name: "MongoDB Python Developer", org: "MongoDB", date: "February 2026", certificateUrl: mongodbCert.url },
+  { name: "Gen AI for Code Generation for Python", org: "Edureka · Coursera", date: "December 2025", certificateUrl: genaiPythonCert.url },
   { name: "Master Generative AI & ChatGPT", org: "Udemy", date: "September 2025" },
-  { name: "Generative AI Guide — DALL·E, ChatGPT, Creativity with AI", org: "Udemy", date: "December 2025" },
-  { name: "Deep Learning — Elite + Silver (73%)", org: "NPTEL · IIT Ropar", date: "April 2026" },
+  { name: "Generative AI Guide — DALL·E, ChatGPT, Creativity with AI", org: "Udemy", date: "December 2025", certificateUrl: genaiDalleCert.url },
+  { name: "Deep Learning — Elite + Silver (73%)", org: "NPTEL · IIT Ropar", date: "April 2026", certificateUrl: nptelCert.url },
 ];
 
-const HACKATHONS = [
+const HACKATHONS: { name: string; host: string; project: string; result: string; certificateUrl?: string }[] = [
   {
     name: "HackVerse",
     host: "Sai Vidya Institute of Technology",
     project: "Tourist Recommendation System — Android App built with Flutter",
     result: "Participant",
+    certificateUrl: hackverseCert.url,
   },
   {
     name: "CideCode Hackathon",
@@ -206,6 +209,7 @@ const HACKATHONS = [
     project:
       "EchoMark — a digital investigation platform aggregating public info about a suspect across online platforms using Flask + React.",
     result: "Shortlisted Team & Final Participant",
+    certificateUrl: cidecodeCert.url,
   },
 ];
 
