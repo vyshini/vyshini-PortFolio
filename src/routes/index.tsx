@@ -943,7 +943,69 @@ function Projects() {
   );
 }
 
+function CertificateViewer({
+  cert,
+  onClose,
+}: {
+  cert: { url: string; title: string } | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!cert) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [cert, onClose]);
+
+  return (
+    <AnimatePresence>
+      {cert && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-h-[90vh] max-w-5xl overflow-auto rounded-2xl border border-white/10 bg-[#0b0f1e] p-3 shadow-2xl"
+          >
+            <div className="mb-3 flex items-center justify-between gap-4 px-2 pt-1">
+              <p className="font-display text-sm font-semibold text-foreground truncate">{cert.title}</p>
+              <button
+                onClick={onClose}
+                aria-label="Close certificate"
+                className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/5 text-foreground transition-colors hover:border-cyan/50 hover:text-cyan"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <img
+              src={cert.url}
+              alt={cert.title}
+              className="mx-auto block max-h-[75vh] w-auto rounded-lg"
+            />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 function Certifications() {
+  const [viewer, setViewer] = useState<{ url: string; title: string } | null>(null);
   return (
     <Section id="certifications" title="Certifications" eyebrow="Credentials">
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -962,17 +1024,24 @@ function Certifications() {
             <p className="text-xs uppercase tracking-widest text-cyan">{c.date}</p>
             <h3 className="mt-1 font-display text-base font-bold text-foreground">{c.name}</h3>
             <p className="mt-1 text-sm text-muted-foreground">{c.org}</p>
-            <button className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 text-xs text-muted-foreground transition-colors group-hover:border-cyan/50 group-hover:text-cyan">
-              View Certificate <ExternalLink className="h-3 w-3" />
-            </button>
+            {c.certificateUrl && (
+              <button
+                onClick={() => setViewer({ url: c.certificateUrl!, title: c.name })}
+                className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 text-xs text-muted-foreground transition-colors group-hover:border-cyan/50 group-hover:text-cyan"
+              >
+                View Certificate <ExternalLink className="h-3 w-3" />
+              </button>
+            )}
           </motion.div>
         ))}
       </div>
+      <CertificateViewer cert={viewer} onClose={() => setViewer(null)} />
     </Section>
   );
 }
 
 function Hackathons() {
+  const [viewer, setViewer] = useState<{ url: string; title: string } | null>(null);
   return (
     <Section id="hackathons" title="Hackathons" eyebrow="Competitions">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -998,15 +1067,24 @@ function Hackathons() {
               </div>
             </div>
             <p className="text-sm text-muted-foreground">{h.project}</p>
-            <div className="mt-4 flex items-center justify-between">
+            <div className="mt-4 flex items-center justify-between gap-3">
               <span className="rounded-full border border-cyan/30 bg-cyan/10 px-3 py-1 text-xs text-cyan">
                 {h.result}
               </span>
-              <button className="text-xs text-muted-foreground hover:text-cyan">Certificate →</button>
+              {h.certificateUrl && (
+                <button
+                  onClick={() => setViewer({ url: h.certificateUrl!, title: h.name })}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-cyan/50 hover:text-cyan"
+                >
+                  View Certificate <ExternalLink className="h-3 w-3" />
+                </button>
+              )}
             </div>
           </motion.div>
         ))}
       </div>
+      <CertificateViewer cert={viewer} onClose={() => setViewer(null)} />
+
 
       <div className="mt-14">
         <h3 className="mb-6 text-center font-display text-2xl font-bold gradient-text">Achievements</h3>
