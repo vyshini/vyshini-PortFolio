@@ -929,8 +929,6 @@ function Projects() {
                   <a
                     key={l.label}
                     href={l.href}
-                    target={l.href.startsWith("http") ? "_blank" : undefined}
-                    rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-foreground transition-colors hover:border-cyan/50 hover:text-cyan"
                   >
                     {l.label} <ExternalLink className="h-3 w-3" />
