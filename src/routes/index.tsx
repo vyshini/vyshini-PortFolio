@@ -177,7 +177,7 @@ const PROJECTS = [
     tech: ["Python", "Flask", "MongoDB", "HTML", "CSS"],
     links: [
       { label: "GitHub", href: "https://github.com/vyshini/ai-form-builder" },
-      { label: "Demo", href: "#" },
+      { label: "Demo", href: "https://ai-form-builder-rblq.onrender.com/" },
       { label: "Docs", href: "#" },
     ],
     gradient: "from-cyan-500/20 to-blue-500/20",
