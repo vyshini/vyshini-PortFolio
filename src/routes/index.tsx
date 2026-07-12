@@ -162,7 +162,7 @@ const PROJECTS = [
     features: ["Emotion Detection", "Transformer Model", "Context-aware", "NLP Pipeline", "Fine-tuned FLAN-T5"],
     tech: ["Python", "PyTorch", "Hugging Face", "Google Colab", "NLP"],
     links: [
-      { label: "GitHub", href: "#" },
+      { label: "GitHub", href: "https://github.com/vyshini/AI-virtual-companion-chatbot" },
       { label: "Live Demo", href: "#" },
       { label: "Case Study", href: "#" },
     ],
@@ -176,7 +176,7 @@ const PROJECTS = [
     features: ["Dynamic Builder", "Multiple Q Types", "Response Dashboard", "CSV Export", "Unique Share Links"],
     tech: ["Python", "Flask", "MongoDB", "HTML", "CSS"],
     links: [
-      { label: "GitHub", href: "#" },
+      { label: "GitHub", href: "https://github.com/vyshini/ai-form-builder" },
       { label: "Demo", href: "#" },
       { label: "Docs", href: "#" },
     ],
