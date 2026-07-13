@@ -1,4 +1,4 @@
-import profileAsset from "@/assets/vyshini-profile.jpeg.asset.json";
+const profileAsset = { url: "/images/vyshini-profile.jpeg" };
 const hackverseCert = { url: "/certifications/hackverse.jpg" };
 const cidecodeCert = { url: "/certifications/cidecode.jpeg" };
 const mongodbCert = { url: "/certifications/mongodb.jpg" };
