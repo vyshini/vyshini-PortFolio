@@ -1,4 +1,4 @@
-const profileAsset = { url: "/images/vyshini-profile.jpeg" };
+const profileAsset = { url: "/images/profile.png" };
 const hackverseCert = { url: "/certifications/hackverse.jpg" };
 const cidecodeCert = { url: "/certifications/cidecode.jpeg" };
 const mongodbCert = { url: "/certifications/mongodb.jpg" };
