@@ -557,7 +557,8 @@ function Hero() {
               View Projects <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="#"
+              href="/resume.pdf"
+              download
               className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur-md transition-colors hover:border-white/30 hover:bg-white/10"
             >
               <Download className="h-4 w-4" /> Download Resume
