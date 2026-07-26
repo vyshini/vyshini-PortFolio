@@ -2,7 +2,7 @@
 
 Welcome to the repository for my personal portfolio website! This website showcases my skills, projects, and certifications. 
 
-**Live Demo:** [https://vyshini-portfolio.netlify.app/](https://vyshini-portfolio.netlify.app/)
+**URL:** [https://vyshini-portfolio.netlify.app/](https://vyshini-portfolio.netlify.app/)
 
 ## 🛠 Tech Stack
 
