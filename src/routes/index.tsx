@@ -8,7 +8,7 @@ const ibmAiCert = { url: "/certifications/ibm-ai.jpg" };
 const nptelCert = { url: "/certifications/nptel.jpg" };
 const genaiDalleCert = { url: "/certifications/genai-dalle.jpg" };
 const genaiPythonCert = { url: "/certifications/genai-python.jpg" };
-const pythonBootcampCert = { url: "/certifications/udemy-certificate.jpg" }
+const pythonBootcampCert = { url: "/certifications/udemy-certificate.jpg" };
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence, useScroll, useSpring, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -213,6 +213,7 @@ const CERTIFICATIONS: { name: string; org: string; date: string; certificateUrl?
   { name: "Master Generative AI & ChatGPT", org: "Udemy", date: "September 2025" },
   { name: "Generative AI Guide — DALL·E, ChatGPT, Creativity with AI", org: "Udemy", date: "December 2025", certificateUrl: genaiDalleCert.url },
   { name: "Deep Learning — Elite + Silver (73%)", org: "NPTEL · IIT Ropar", date: "April 2026", certificateUrl: nptelCert.url },
+  { name: "100 Days of Code™: The Complete Python Pro Bootcamp", org: "Udemy", date: "July 2026", certificateUrl: pythonBootcampCert.url },
 ];
 
 const HACKATHONS: { name: string; host: string; project: string; result: string; certificateUrl?: string }[] = [
