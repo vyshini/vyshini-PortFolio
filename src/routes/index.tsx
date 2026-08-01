@@ -8,6 +8,7 @@ const ibmAiCert = { url: "/certifications/ibm-ai.jpg" };
 const nptelCert = { url: "/certifications/nptel.jpg" };
 const genaiDalleCert = { url: "/certifications/genai-dalle.jpg" };
 const genaiPythonCert = { url: "/certifications/genai-python.jpg" };
+const pythonBootcampCert = { url: "/certifications/python-bootcamp.jpg" }
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence, useScroll, useSpring, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -167,6 +168,25 @@ const PROJECTS = [
       { label: "Case Study", href: "#" },
     ],
     gradient: "from-blue-500/20 to-purple-500/20",
+  },
+  {
+    title: "PatchOps",
+    subtitle: "AI Incident Resolution Hub",
+    description:
+      "An intelligent incident management platform featuring automated AI root cause analysis, real-time architecture impact diagrams, Git diff code patch generation, and seamless DevOps integrations.",
+    features: [
+      "AI Root Cause Analysis",
+      "Mermaid.js Impact Diagrams",
+      "Git Diff Patch Generation",
+      "Slack / Jira / GitHub Integrations",
+      "Real-time Incident Dashboard",
+    ],
+    tech: ["Python", "FastAPI", "JavaScript", "Tailwind CSS", "Gemini API", "AWS"],
+    links: [
+      { label: "GitHub", href: "https://github.com/vyshini/PatchOps" },
+      { label: "Live Demo", href: "http://patchops-env.eba-d4azdp3d.ap-south-1.elasticbeanstalk.com/" },
+    ],
+    gradient: "from-emerald-500/20 to-cyan-500/20",
   },
   {
     title: "Custom Form Builder",
