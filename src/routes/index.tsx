@@ -8,7 +8,7 @@ const ibmAiCert = { url: "/certifications/ibm-ai.jpg" };
 const nptelCert = { url: "/certifications/nptel.jpg" };
 const genaiDalleCert = { url: "/certifications/genai-dalle.jpg" };
 const genaiPythonCert = { url: "/certifications/genai-python.jpg" };
-const pythonBootcampCert = { url: "/certifications/python-bootcamp.jpg" }
+const pythonBootcampCert = { url: "/certifications/udemy-certificate.jpg" }
 import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence, useScroll, useSpring, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
